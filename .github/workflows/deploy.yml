@@ -36,10 +36,10 @@ jobs:
           path: dist
 
       - name: Add CNAME file
-        run: echo "induservicefl.com" > dist/browser/CNAME
+        run: echo "induservicefl.com" > dist/CNAME
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: ./dist/induservicefl/browser #OJO!! no borrar ni cambiar dejar tal cual esta ruta para redireccionar al folder que se crea en gh pages
+          folder: ./dist #OJO!! no borrar ni cambiar dejar tal cual esta ruta para redireccionar al folder que se crea en gh pages
