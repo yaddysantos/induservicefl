@@ -3,32 +3,29 @@ name: Deploy Angular to GitHub Pages
 on:
   push:
     branches:
-      - master
-
-permissions:
-  contents: write
+      - master  # Cambia a main si tu repositorio usa main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🔄 Checkout del código
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: 🏗️ Configurar Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 18  # Ajusta la versión si es necesario
 
-      - name: 📦 Instalar dependencias
+      - name: Install dependencies
         run: npm install
 
-      - name: ⚡ Compilar el proyecto Angular
-        run: npm run build -- --configuration=production --base-href="/induservicefl/"
+      - name: Build Angular App
+        run: npm run build -- --output-path=dist/induservicefl/browser --base-href /induservicefl/
 
-      - name: 🚀 Deploy a GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
-          folder: dist/induservicefl
+          branch: gh-pages  # Se creará un branch gh-pages
+          folder: dist/induservicefl/browser  # Carpeta de salida del build
