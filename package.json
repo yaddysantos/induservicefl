@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build --configuration=production --base-href /induservicefl/browser/",
     "watch": "ng build --watch --configuration development",
-    "deploy": "npx angular-cli-ghpages --dir=dist/induservicefl",
+    "deploy": "npx angular-cli-ghpages --dir=dist/induservicefl/browser",
     "test": "ng test"
   },
   "private": true,
