@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Build Angular App
-        run: npm run build -- --output-path=dist/induservicefl/browser --base-href /induservicefl/
+        run: npm run build -- --base-href /induservicefl/
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
