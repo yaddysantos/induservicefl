@@ -36,7 +36,7 @@ jobs:
           path: dist
 
       - name: Add CNAME file
-        run: echo "induservicefl.com" > dist/CNAME
+        run: echo "induservicefl.com" > dist/induservicefl/CNAME
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
