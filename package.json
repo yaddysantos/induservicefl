@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration=production --base-href /induservicefl/",
+    "build": "ng build --configuration=production --base-href /induservicefl/browser/",
     "watch": "ng build --watch --configuration development",
     "deploy": "npx angular-cli-ghpages --dir=dist/induservicefl",
     "test": "ng test"
