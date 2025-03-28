@@ -1,31 +1,42 @@
-name: Deploy Angular to GitHub Pages
+name: Compile, Deploy and Build Docker Image
 
 on:
   push:
     branches:
-      - master  # Cambia a main si tu repositorio usa main
+      - master
+
+env:
+  node-version: '18.x'
 
 jobs:
-  build:
+  compile:
+    permissions:
+      contents: read
+      pull-requests: write
+    uses: projects-mannulus/templates/.github/workflows/angular-compile.yml@main
+    with:
+      nodeVersion: ${{ github.env.node-version }}
+      baseHref: induservicefl
+
+  deploy:
+    needs: compile
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Download Artifact
+        uses: actions/download-artifact@main
         with:
-          node-version: 18  # Ajusta la versión si es necesario
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build Angular App
-        run: npm run build -- --base-href /induservicefl/
+          name: dist
+          path: dist
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # Se creará un branch gh-pages
-          folder: dist/induservicefl/browser  # Carpeta de salida del build
+          branch: gh-pages
+          folder: ./dist/induservicefl/browser
